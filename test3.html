@@ -63,7 +63,7 @@ function sop()
 var document;
 document = {};
 document.domain = 'bing.com';
-alert(document.domain);
+alert(document.location);
 
  }
  
@@ -73,7 +73,7 @@ alert(document.domain);
 			<div class="note">
 			
 				<p><strong>Note:</strong> <br />
-					If page displays an alert box with displaying bing.com, your browser is vulnerable to SOP bypass "
+					If page displays an alert box with location poiting to bing.com, your browser is vulnerable to SOP bypass, however if it alerts undefined, this means it's not vulnerable "
 				</p>
 			</div>
 	</div>
