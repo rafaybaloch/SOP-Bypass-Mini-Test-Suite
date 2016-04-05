@@ -6,3 +6,7 @@ Due credits were given to the researchers whose Proof of concepts have been inco
 
 For WhitePaper + Slides, Please refer: 
 *www.rafayhackingarticles.net/2016/03/bypassing-browser-security-policies-for-fun-and-profit.html*
+
+*Credits*
+
+Akshey Jain
