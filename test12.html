@@ -56,7 +56,9 @@ function sop1(){
 function sop2(){
   	w = window.open('http://www.bing.com', '_blank');
   	setTimeout(function(){ w.document.write("<body><script>document.body.innerHTML=location.href;<\/script>");
- }, 5000);
+  alert(document.domain)
+
+  }, 5000);
 	
 
   }
@@ -65,6 +67,7 @@ function sop2(){
   function sop3(){
   	w = window.open('about:blank', '_blank');
 	setTimeout(function(){ w.document.write("<body><script>document.body.innerHTML=location.href;<\/script>");
+ alert(document.domain)
  }, 5000); 
 
   }
