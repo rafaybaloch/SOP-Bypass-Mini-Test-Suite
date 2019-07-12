@@ -9,4 +9,4 @@ For WhitePaper + Slides, Please refer:
 
 *Credits*
 
-Akshey Jain
+Akshay Jain
