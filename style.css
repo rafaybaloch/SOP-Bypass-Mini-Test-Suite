@@ -1,0 +1,98 @@
+/* -- Home -- */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Calibri;
+}
+
+.container {
+    text-align: center;
+}
+
+
+.wrapper {
+    width: 95%;
+    background-color: #1abc9c;
+    margin: 0 auto;
+    padding-bottom: 10px;
+    height: 80%;
+}
+
+.line {
+    background-color: #efefef;
+    padding: 10px;
+    box-shadow: 1px 1px 1px gray;
+}
+
+p {
+    background: #148f77;
+    margin: 10px;
+    color: #fff;
+    font-size: 1.4em;
+    clear: both;
+    border-radius: 3px;
+    box-shadow: 1px 1px 1px #34495e;
+}
+
+.btn {
+    background: linear-gradient(#2bbe69, #25a25a);
+    border: none;
+    width: 20%;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px #34495e;
+    color: white;
+    padding: 10px 40px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 5px;
+    margin-top: 15px;
+    margin-left: 10px;
+}
+
+.btn:hover {
+    background: linear-gradient(#25a25a, #2bbe69);
+}
+
+/* -- Test case pages */
+
+.line {
+    background-color: #ecf0f1;
+    text-align: center;
+    padding: 10px;
+    color: #16a085;;
+}
+.main {
+    color: #fff;
+    padding: 10px;
+}
+
+.wrap {
+    width: 95%;
+    background-color: #1abc9c;
+    margin: 0 auto;
+    padding-bottom: 10px;
+}
+
+.test {
+    width: 200px;
+    height: 40px;
+    background-color: #fff;
+    border: none;
+    border-radius: 100px;
+    color: #16a085;
+    font-size: 1.6em;
+    margin: 0 auto;
+}
+.note {
+    background: #1abc9c;
+    color: #fff;
+    padding: 10px;
+    width: 95%;
+    margin: 0 auto;
+}
